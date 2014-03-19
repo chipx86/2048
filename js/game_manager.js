@@ -70,19 +70,17 @@ GameManager.prototype.mergeTile = function(next) {
     var rand = Math.random(),
         value;
 
-    if (rand <= 0.02) {
+    if (rand <= 0.01) {
         value = 2048;
-    } else if (rand <= 0.05) {
+    } else if (rand <= 0.02) {
         value = 1024;
-    } else if (rand <= 0.08) {
+    } else if (rand <= 0.04) {
         value = 512;
-    } else if (rand <= 0.1) {
+    } else if (rand <= 0.08) {
         value = 256;
-    } else if (rand <= 0.15) {
+    } else if (rand <= 0.1) {
         value = 128;
     } else if (rand <= 0.2) {
-        value = 128;
-    } else if (rand <= 0.25) {
         value = 64;
     } else if (rand <= 0.3) {
         value = 32;
