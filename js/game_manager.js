@@ -66,6 +66,37 @@ GameManager.prototype.addRandomTile = function () {
   }
 };
 
+GameManager.prototype.mergeTile = function(next) {
+    var rand = Math.random(),
+        value;
+
+    if (rand <= 0.02) {
+        value = 2048;
+    } else if (rand <= 0.05) {
+        value = 1024;
+    } else if (rand <= 0.08) {
+        value = 512;
+    } else if (rand <= 0.1) {
+        value = 256;
+    } else if (rand <= 0.15) {
+        value = 128;
+    } else if (rand <= 0.2) {
+        value = 128;
+    } else if (rand <= 0.25) {
+        value = 64;
+    } else if (rand <= 0.3) {
+        value = 32;
+    } else if (rand <= 0.5) {
+        value = 16;
+    } else if (rand <= 0.7) {
+        value = 8;
+    } else {
+        value = 4;
+    }
+
+    return new Tile(next, value);
+}
+
 // Sends the updated grid to the actuator
 GameManager.prototype.actuate = function () {
   if (this.scoreManager.get() < this.score) {
@@ -127,7 +158,7 @@ GameManager.prototype.move = function (direction) {
 
         // Only one merger per row traversal?
         if (next && next.value === tile.value && !next.mergedFrom) {
-          var merged = new Tile(positions.next, tile.value * 2);
+          var merged = self.mergeTile(positions.next);
           merged.mergedFrom = [tile, next];
 
           self.grid.insertTile(merged);
